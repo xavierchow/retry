@@ -2,7 +2,7 @@
 
 This is a tiny library to handle the retry mechanism, it provides
 
-- max attempts
+- max attempts, setting to 1 means `do it once and retry it once`
 - criteria control for retry or not
 - back off for a certain delay
 
