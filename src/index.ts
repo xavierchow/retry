@@ -2,6 +2,7 @@ type RetryConfig = {
   maxAttempts: number;
   delayInMs?: number;
   shouldRetry?: (err: unknown) => boolean;
+  mode?: "linear" | "exp";
 };
 export async function withRetry(
   config: RetryConfig,
@@ -18,9 +19,8 @@ export async function withRetry(
     } catch (err: unknown) {
       const toBeRetried = shouldRetry(err);
       if (toBeRetried && attempts <= config.maxAttempts) {
-        if (config.delayInMs && config.delayInMs > 0) {
-          await new Promise((resolve) => setTimeout(resolve, config.delayInMs));
-        }
+        const timeout = computeTimeout(config, attempts);
+        await new Promise((resolve) => setTimeout(resolve, timeout));
         return exec();
       } else {
         throw err;
@@ -28,4 +28,15 @@ export async function withRetry(
     }
   };
   return exec();
+}
+
+function computeTimeout(config: RetryConfig, attempts: number) {
+  config.delayInMs = config.delayInMs || 1000;
+  const factor = 2;
+  if (config.mode && config.mode === "exp") {
+    const timeout = config.delayInMs * Math.pow(factor, attempts);
+    return timeout;
+  } else {
+    return config.delayInMs;
+  }
 }
