@@ -3,6 +3,10 @@ on:
   push:
     tags:
       - "v*.*.*"
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,5 +36,3 @@ jobs:
       - run: pnpm build
 
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
