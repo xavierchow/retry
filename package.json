@@ -1,12 +1,10 @@
 {
-  "name": "retry",
+  "name": "@xavierchow/retry",
   "version": "1.0.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
