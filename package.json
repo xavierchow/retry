@@ -4,17 +4,19 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
     "test": "jest",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xavierchow/retry.git"
+  },
   "keywords": [],
-  "author": "",
+  "author": "xavierchow",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^30.0.0",
