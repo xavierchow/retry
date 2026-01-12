@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - "v*.*.*"
+
 permissions:
   id-token: write # Required for OIDC
   contents: read
@@ -16,7 +17,7 @@ jobs:
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v4
         with:
-          node-version: "22.x"
+          node-version: "24"
           registry-url: "https://registry.npmjs.org"
 
       - name: Setup pnpm
