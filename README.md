@@ -25,7 +25,7 @@ const run = async () => {
 
 await withRetry({ 
     maxAttempts: 3, 
-    delayInMs: 1000  // retry after 1 second, mam 3 times
+    delayInMs: 1000  // retry after 1 second, max 3 times
 }, run);
 
 
